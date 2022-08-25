@@ -51,12 +51,20 @@ export class Phonebook extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) { 
-    console.log('применяется componentDidUpdate')
-
+    // console.log('применяется componentDidUpdate')
     if (this.state.contacts !== prevState.contacts) {
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
     }
+  };
 
+  componentDidMount() {
+    // console.log('применяется ccomponentDidMount');
+    const contacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contacts);
+
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts})
+    };
   };
 
   render() {
