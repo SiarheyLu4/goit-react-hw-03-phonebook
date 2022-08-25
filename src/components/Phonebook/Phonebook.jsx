@@ -50,6 +50,15 @@ export class Phonebook extends Component {
     Notify.info(`${name} added to contacts`, { position: "center-top"});
   };
 
+  componentDidUpdate(prevProps, prevState) { 
+    console.log('применяется componentDidUpdate')
+
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+
+  };
+
   render() {
     // console.log(this.state);
     const { addContact,
